@@ -52,7 +52,11 @@ table {
 END OF RESET CODE
 ==============================================================================*/
 canvas{
-  display: inline-block;
+	max-width: 1280px;
+	max-height: 720px;
+	display: inline-block !important;
+}
+#chart{
   border: solid 1px black;
   background-color: #E5E5E5;
 }
