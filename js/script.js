@@ -78,11 +78,16 @@ Chart = new Chart(chart, {
 UPDATE BACKGROUND CHART CODE!!!!!!!
 
 ==================================================================*/
-
+//call a function
 function updateChart(newNumber){
+  //add the new number to the arrau
   currentData.push(newNumber);
+  //remove the first number
   currentData.shift();
+  //oush a random label through
   Chart.data.labels.push('New Integer');
+  //remove the first element in the array
   Chart.data.labels.shift();
+  //update the chart
   Chart.update();
 }
