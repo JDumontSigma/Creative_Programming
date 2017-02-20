@@ -56,3 +56,13 @@ canvas{
   border: solid 1px black;
   background-color: #E5E5E5;
 }
+@font-face {
+	    font-family: 'cabrito';
+	    src: url('../fonts/insigne_-_cabrito-extbol-webfont.eot');
+	    src: url('../fonts/insigne_-_cabrito-extbol-webfont.eot?#iefix') format('embedded-opentype'),
+	         url('../fonts/insigne_-_cabrito-extbol-webfont.woff') format('woff'),
+	         url('../fonts/insigne_-_cabrito-extbol-webfont.ttf') format('truetype'),
+	         url('../fonts/insigne_-_cabrito-extbol-webfont.svg#cabrito_ext_boldext_bold') format('svg');
+	    font-weight: bold;
+	    font-style: normal;
+	}

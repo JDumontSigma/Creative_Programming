@@ -3,20 +3,20 @@
 <body>
 
 <canvas id="myCanvas" width="1000" height="100"
-style="border:1px solid #d3d3d3;">
-Your browser does not support the canvas element.
+style="border:1px solid;">
 </canvas>
 
 <script>
 var canvas = document.getElementById("myCanvas");
 var ctx = canvas.getContext("2d");
-ctx.font = "50px Arial Black";
+ctx.font = "50px scabrito";
 ctx.fillStyle="Black";
 ctx.fillText("The Health of  ",100,50);
 ctx.closePath();
 ctx.beginPath();
 ctx.fillStyle="Red";
-ctx.fillText(" Camp Digital!",475,50);
+ctx.fillText(" Camp Digital!",376,50);
+ctx.textAlign = "center";
 </script>
 
 </body>
