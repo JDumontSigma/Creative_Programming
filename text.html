@@ -11,7 +11,12 @@ Your browser does not support the canvas element.
 var canvas = document.getElementById("myCanvas");
 var ctx = canvas.getContext("2d");
 ctx.font = "50px Arial Black";
-ctx.fillText("The Health of Camp Digital! ",100,50);
+ctx.fillStyle="Black";
+ctx.fillText("The Health of  ",100,50);
+ctx.closePath();
+ctx.beginPath();
+ctx.fillStyle="Red";
+ctx.fillText(" Camp Digital!",465,50);
 </script>
 
 </body>
