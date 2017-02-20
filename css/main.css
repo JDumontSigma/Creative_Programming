@@ -66,3 +66,14 @@ canvas{
 	    font-weight: bold;
 	    font-style: normal;
 	}
+
+	@font-face {
+	    font-family: 'cabrito';
+	    src: url('../fonts/insigne_-_cabrito-nordem-webfont.eot');
+	    src: url('../fonts/insigne_-_cabrito-nordem-webfont.eot?#iefix') format('embedded-opentype'),
+	         url('../fonts/insigne_-_cabrito-nordem-webfont.woff') format('woff'),
+	         url('../fonts/insigne_-_cabrito-nordem-webfont.ttf') format('truetype'),
+	         url('../fonts/insigne_-_cabrito-nordem-webfont.svg#cabrito_norm_deminorm_demi') format('svg');
+	    font-weight: normal;
+	    font-style: normal;
+	}
