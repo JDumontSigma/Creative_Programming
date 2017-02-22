@@ -1,7 +1,8 @@
 'use strict';
 //This is the number that will change!
 var changingNumber = 0;
-
+var allData = [9,20,3,4,5];
+var labels = ['Red', 'Blue', 'Yellow', 'Green', 'Orange'];
 //Generates a random number!
 function randomNumber() {
     //change the variable to a new number
@@ -33,14 +34,14 @@ BACKGROUND CHART CODE!!!!!!!
 var chart = document.getElementById('chart').getContext('2d');
 //Define the variable for the chart settings
 var Chart;
-var currentData = [9,20,3,4,5];
+
 
 var data = {
   //set the labels and how many points there are currently
-  labels: ['Red', 'Blue', 'Yellow', 'Green', 'Orange'],
+  labels: labels,
   datasets: [{
     //pass through the data which has been set
-    data:currentData,
+    data:allData,
     //set the background colour for the chart
     backgroundColor: 'rgba(106, 202, 197, 0.25)',
     //set the line colour for the chart
@@ -81,13 +82,14 @@ UPDATE BACKGROUND CHART CODE!!!!!!!
 //call a function
 function updateChart(newNumber){
   //add the new number to the arrau
-  currentData.push(newNumber);
-  //remove the first number
-  currentData.shift();
+  allData.push(newNumber);
+  //currentData = allData.slice(-5);
   //oush a random label through
-  Chart.data.labels.push('New Integer');
+  labels.push('New Integer');
+  //currentLabels = labels.slice(-5);
+  Chart.data.datasets[0].data = allData.slice(-5);
+  Chart.data.labels = labels.slice(-5);
   //remove the first element in the array
-  Chart.data.labels.shift();
   //update the chart
   Chart.update();
 }
