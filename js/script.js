@@ -136,7 +136,7 @@ let scatterGram = {},
     drawn = false,
     ballNumb = 0,
     increaseNumber = changingNumber * 30,
-    colour = ['#333','rgba(215, 40, 40, 0.4)','rgba(215, 143, 44, 0.4)','rgba(90, 143, 44, 0.4)','rgba(90, 62, 149, 0.4)',' rgba(203, 62, 149, 0.4)','rgba(78, 255, 179, 0.4)'];
+    colour = ['#333','rgba(215, 40, 40, 0.2)','rgba(215, 143, 44, 0.2)','rgba(90, 143, 44, 0.2)','rgba(90, 62, 149, 0.2)',' rgba(203, 62, 149, 0.2)','rgba(78, 255, 179, 0.2)'];
 
 
 //the drawing function
