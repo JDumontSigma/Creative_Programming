@@ -70,3 +70,8 @@ canvas{
 	right: 300px;
 	top: 400px;
 }
+#scatterTitle{
+	position: absolute;
+	top: 270px;
+	right: 300px;
+}

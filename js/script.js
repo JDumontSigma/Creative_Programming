@@ -96,6 +96,24 @@ function updateChart(newNumber){
 
 
 
+/*=================================================================
+
+SCATTERGRAM TITLE!!!!!!!
+
+==================================================================*/
+let scatterTitle = document.getElementById('scatterTitle').getContext('2d');
+
+function scaTitle(){
+  scatterTitle.save();
+  scatterTitle.clearRect(0,0,500,300);
+    scatterTitle.beginPath();
+      scatterTitle.font = '30px cabrito';
+      scatterTitle.fillText('Average Infection Rate',20,50);
+      scatterTitle.fillText(`${increaseNumber} per minute`,20,100);
+    scatterTitle.closePath();
+  scatterTitle.stroke();
+}
+
 
 
 /*=================================================================
@@ -176,6 +194,7 @@ function drawScatterGram(){
       progress = 0;
       //grab a new version of the number
       increaseNumber = changingNumber * 30;
+      scaTitle();
       //loop through all the current objects in the object first
       for(let balls in scatterGram){
         //gather all the details
@@ -218,6 +237,7 @@ function drawScatterGram(){
       scatterGram[ballNumb] = {'x':x,'y':y,'colour':colour[colourChoice],'size':size};
       //draw the balls
       ball(size,x,y,colour[colourChoice]);
+      scaTitle();
       //increase the ball number
       ballNumb++;
       //set the drawn to true
