@@ -18,7 +18,7 @@ function randomNumber() {
       updateChart(changingNumber);
       //currently set to loop every 5 seconds
       //1000 = 1 second
-    },5000);
+    },2500);
 }
 //call the function to start the change
 randomNumber();
@@ -148,7 +148,7 @@ function drawScatterGram(){
   //only used on the first round
   if(drawn){
     //if the balls have not fully entered the screen then do this
-    if(progress < 500){
+    if(progress < 250){
       //loop through the json object
       for(let balls in scatterGram){
         //pull in the data about the ball
@@ -191,7 +191,7 @@ function drawScatterGram(){
       //draw the next wave of balls
       for(let x = 0; x < increaseNumber; x++){
         //generate random numbers and place them off canvas
-        let x = random(1,500) * -1;
+        let x = random(1,250) * -1;
         let y = random(10,265),
         colourChoice = random(1,7);
         //store them into the json object
@@ -207,7 +207,7 @@ function drawScatterGram(){
     //create the relevant amount of balls
     for(let x = 0; x < increaseNumber; x++){
       //set the variables
-      let x = random(1,500) * -1,
+      let x = random(1,250) * -1,
           y = random(10,260),
           colourChoice = random(1,7);
           //store the information into JSON
