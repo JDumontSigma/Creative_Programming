@@ -155,10 +155,11 @@ function drawScatterGram(){
         let x = scatterGram[balls].x,
             y = scatterGram[balls].y,
             colour = scatterGram[balls].colour,
+            size = scatterGram[balls].size,
             //increase its position
             newX = x + speed;
             //redraw the ball
-            ball(5,newX,y,colour);
+            ball(size,newX,y,colour);
             //check to see if it is still in the screen
             if(newX > 505){
               //if not delete it from the JSON object
@@ -181,10 +182,11 @@ function drawScatterGram(){
         let x = scatterGram[balls].x,
             y = scatterGram[balls].y,
             colour = scatterGram[balls].colour,
+            size = scatterGram[balls].size,
             //set new speed
             newX = x + speed;
             //redraw the ball
-            ball(5,newX,y,colour);
+            ball(size,newX,y,colour);
             //save the nex x positon
             scatterGram[balls].x = newX;
       }
@@ -193,11 +195,12 @@ function drawScatterGram(){
         //generate random numbers and place them off canvas
         let x = random(1,250) * -1;
         let y = random(10,265),
-        colourChoice = random(1,7);
+            colourChoice = random(1,7),
+            size = random(2,6);
         //store them into the json object
-        scatterGram[ballNumb] = {'x':x,'y':y,'colour':colour[colourChoice]};
+        scatterGram[ballNumb] = {'x':x,'y':y,'colour':colour[colourChoice],'size':size};
         //draw them onto the screen
-        ball(5,x,y,colour[colourChoice]);
+        ball(size,x,y,colour[colourChoice]);
         //increase the ball number
         ballNumb++;
       }
@@ -209,11 +212,12 @@ function drawScatterGram(){
       //set the variables
       let x = random(1,250) * -1,
           y = random(10,260),
-          colourChoice = random(1,7);
+          colourChoice = random(1,7),
+          size = random(2,6);
           //store the information into JSON
-      scatterGram[ballNumb] = {'x':x,'y':y,'colour':colour[colourChoice]};
+      scatterGram[ballNumb] = {'x':x,'y':y,'colour':colour[colourChoice],'size':size};
       //draw the balls
-      ball(5,x,y,colour[colourChoice]);
+      ball(size,x,y,colour[colourChoice]);
       //increase the ball number
       ballNumb++;
       //set the drawn to true
