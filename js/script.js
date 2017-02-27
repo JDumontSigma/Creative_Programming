@@ -3,6 +3,26 @@
 var changingNumber = 0;
 var allData = [9,20,3,4,5];
 var labels = ['Red', 'Blue', 'Yellow', 'Green', 'Orange'];
+let numbOfTweets= 0;
+
+/*=================================================================
+
+DRAW NUMBER OF TWEETS!!!!!!!
+
+==================================================================*/
+let tweetCount = document.getElementById('numbOfTweets').getContext('2d');
+
+function tweetCountUpdate(){
+tweetCount.save();
+tweetCount.clearRect(0,0,225,150);
+  tweetCount.beginPath();
+    tweetCount.font = '30px cabrito';
+    tweetCount.fillText('Total tweets',20,60);
+    tweetCount.font = '50px cabrito';
+    tweetCount.fillText(`${numbOfTweets}`,20,110);
+  tweetCount.closePath();
+tweetCount.stroke();
+}
 //Generates a random number!
 function randomNumber() {
     //change the variable to a new number
@@ -10,6 +30,10 @@ function randomNumber() {
     changingNumber = Math.floor((Math.random() * 10) + 1);
     //displauys the new value on screen
     document.getElementById('number').innerHTML = changingNumber;
+    //increase the number of tweets
+    numbOfTweets = numbOfTweets + changingNumber;
+    tweetCountUpdate();
+
     //sets up a looping function
 
     setTimeout(function(){
@@ -149,9 +173,8 @@ const ball = function(size,x,y,colour){
 //gather a number to show a varying quantity
 //colours to changes the colours of the ball
 let scatterGram = {},
-    progress = 0,
+    progress = 251,
     speed= 1,
-    drawn = false,
     ballNumb = 0,
     increaseNumber = changingNumber * 30,
     colour = ['#333','rgba(215, 40, 40, 0.2)','rgba(215, 143, 44, 0.2)','rgba(90, 143, 44, 0.2)','rgba(90, 62, 149, 0.2)',' rgba(203, 62, 149, 0.2)','rgba(78, 255, 179, 0.2)'];
@@ -163,8 +186,7 @@ function drawScatterGram(){
   scatter.save();
   scatter.clearRect(0,0,500,275);
   //checks to see if elements have already been drawn
-  //only used on the first round
-  if(drawn){
+
     //if the balls have not fully entered the screen then do this
     if(progress < 250){
       //loop through the json object
@@ -179,7 +201,7 @@ function drawScatterGram(){
             //redraw the ball
             ball(size,newX,y,colour);
             //check to see if it is still in the screen
-            if(newX > 505){
+            if(newX > 510){
               //if not delete it from the JSON object
               delete scatterGram[balls];
             }else{
@@ -213,7 +235,7 @@ function drawScatterGram(){
       for(let x = 0; x < increaseNumber; x++){
         //generate random numbers and place them off canvas
         let x = random(1,250) * -1;
-        let y = random(10,265),
+        let y = random(15,250),
             colourChoice = random(1,7),
             size = random(2,6);
         //store them into the json object
@@ -225,25 +247,7 @@ function drawScatterGram(){
       }
     }
     //if it is the first iteration of drawing
-  }else{
-    //create the relevant amount of balls
-    for(let x = 0; x < increaseNumber; x++){
-      //set the variables
-      let x = random(1,250) * -1,
-          y = random(10,260),
-          colourChoice = random(1,7),
-          size = random(2,6);
-          //store the information into JSON
-      scatterGram[ballNumb] = {'x':x,'y':y,'colour':colour[colourChoice],'size':size};
-      //draw the balls
-      ball(size,x,y,colour[colourChoice]);
-      scaTitle();
-      //increase the ball number
-      ballNumb++;
-      //set the drawn to true
-      drawn = true;
-    }
-  }
+
 //draw all the changes
   scatter.stroke();
   //set a loop function to repeat this process
