@@ -29,17 +29,22 @@ gulp.task('scripts', function() { 
         .pipe(gulp.dest('./js/'));
 });
 
-
+//Generates a live reloading web server
 gulp.task('webserver', [ ], function() {
+  //sets the base directory as the currnt level
   return gulp.src('./')
+  //creates a webserver
     .pipe(webserver({
+      //sets live reload to true
       livereload: true,
 
       //Change this value to "True" to be taken to a directory listing upon running gulp
       directoryListing: {
           enable: true,
-          path: 'dist'
+          //specify the path of the direcotry to list
+          path: './'
       },
+      //opens the browser automatically
       open: true
     }));
 });
