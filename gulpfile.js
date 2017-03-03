@@ -2,12 +2,13 @@
 //npm requires
 var gulp 		          = require('gulp'),
     concat            = require('gulp-concat'),
-    jshint            = require('gulp-jshint');
+    jshint            = require('gulp-jshint'),
+    webserver         = require('gulp-webserver');
 
 
 //the tasts to run, lint js, compile js and watch for changes
 gulp.task('default', [], function() {
-    gulp.start('jshint', 'scripts', 'watch');
+    gulp.start('jshint', 'scripts', 'watch', 'webserver');
 });
 
 
@@ -28,7 +29,24 @@ gulp.task('scripts', function() { 
         .pipe(gulp.dest('./js/'));
 });
 
+
+gulp.task('webserver', [ ], function() {
+  return gulp.src('./')
+    .pipe(webserver({
+      livereload: true,
+
+      //Change this value to "True" to be taken to a directory listing upon running gulp
+      directoryListing: {
+          enable: true,
+          path: 'dist'
+      },
+      open: true
+    }));
+});
+
+
 //watch the js files for changes!
 gulp.task('watch', function() {
+  gulp.watch('./css/*.css'),[];
   gulp.watch('./js/**/*.js', ['jshint', 'scripts']);
 });
