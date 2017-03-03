@@ -23,7 +23,12 @@ tweetCount.clearRect(0,0,225,150);
   tweetCount.closePath();
 tweetCount.stroke();
 }
-//Generates a random number!
+
+/*=================================================================
+
+Generate a random number!!!!!!!
+
+==================================================================*/
 function randomNumber() {
     //change the variable to a new number
     //to increase of decrease the number increase of decrease the number 10
@@ -45,6 +50,7 @@ function randomNumber() {
     },2500);
 }
 //call the function to start the change
+
 randomNumber();
 
 /*=================================================================
@@ -116,10 +122,6 @@ function updateChart(newNumber){
   Chart.update();
 }
 
-
-
-
-
 /*=================================================================
 
 SCATTERGRAM TITLE!!!!!!!
@@ -137,7 +139,6 @@ function scaTitle(){
     scatterTitle.closePath();
   scatterTitle.stroke();
 }
-
 
 
 /*=================================================================

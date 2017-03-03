@@ -51,11 +51,23 @@ table {
 /*===============================================================================
 END OF RESET CODE
 ==============================================================================*/
+.container{
+	display: block;
+	position: relative;
+	width: 1280px;
+	height: 720px;
+	margin:0 auto;
+}
 canvas{
-  display: inline-block;
+	max-width: 1280px;
+	max-height: 720px;
+	display: inline-block !important;
+}
+#chart{
   border: solid 1px black;
   background-color: #E5E5E5;
 }
+
 @font-face {
 	    font-family: 'cabrito';
 	    src: url('../fonts/insigne_-_cabrito-extbol-webfont.eot');
@@ -77,3 +89,29 @@ canvas{
 	    font-weight: normal;
 	    font-style: normal;
 	}
+
+
+#scatter{
+	position: absolute;
+	right:40px;
+	bottom: 40px;
+	border-left: solid 3px rgba(100,100,100,0.4);
+}
+#scatterTitle{
+	position: absolute;
+	top: 280px;
+	right: 60px;
+
+}
+#numbOfTweets{
+	background-color: rgba(255,255,255,0.2);
+	position: absolute;
+	top: 50px;
+	right: 340px;
+}
+#lastFive{
+	border: solid 1px black;
+	position: absolute;
+	bottom: 40px;
+	left: 40px;
+}
