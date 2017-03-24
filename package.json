@@ -6,11 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/JDumontSigma/Creative_Programming.git"
-  },
-  "author": "",
+  "repository": "git+https://github.com/JDumontSigma/Creative_Programming.git",
+  "author": "Jason Dumont",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/JDumontSigma/Creative_Programming/issues"

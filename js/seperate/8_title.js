@@ -11,4 +11,4 @@ title.fillText("The Health of  ",75,50);
 title.closePath();
 title.beginPath();
 title.fillStyle="Red";
-title.fillText(" Camp Digital!",400,50);
+title.fillText("Camp Digital!",400,50);
