@@ -2,7 +2,7 @@
 let heartDraw = document.getElementById('heartCanvas').getContext('2d');
 //basic array information
 //TODO: replace the number with different images
-let array = [1,2,3,4,5,6,7,8,9,10];
+let array = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30];
 
 //set a starting postiion at the beginning
 let position = 0;
@@ -21,13 +21,13 @@ function updateSpeed(){
     //parameters which fit in with the current number
     //this will change and potentially increase when twitter is integrated
     if(changingNumber < 3){
-      heartSpeed = 100;
+      heartSpeed = 60;
     }
     if(changingNumber < 7 && changingNumber > 3){
-      heartSpeed = 50;
+      heartSpeed = 30;
     }
     if(changingNumber > 7){
-      heartSpeed = 20;
+      heartSpeed = 5;
     }
     //log the heart speed to test the changes
     console.log(heartSpeed);
@@ -54,7 +54,7 @@ function scale(){
   if (scaleDirection === 'up') {
     position++;
     //if the array has reached the end then set the direction to downwards
-    if(position === 9){
+    if(position === 29){
       scaleDirection = 'down';
     }
     //if the array is not increasing go downwards
