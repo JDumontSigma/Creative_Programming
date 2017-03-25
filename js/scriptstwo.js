@@ -382,12 +382,10 @@ title.fillText("Camp Digital!",400,50);
 
 //get the holding element to demonstrate the array
 let heartDraw = document.getElementById('heartCanvas').getContext('2d');
-//basic array information
-//TODO: replace the number with different images
-let array = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30];
-
+//This is -1 from the max number of images
+let lastImg = 30;
 //set a starting postiion at the beginning
-let position = 0;
+let position = 1;
 //provide a direction for the array to move
 let scaleDirection = 'up';
 
@@ -425,7 +423,7 @@ function updateSpeed(){
 
 //initiate a function which will display and eventually change the image
 function scale(){
-  let img = `heart_${position + 1}`;
+  let img = `heart_${position}`;
   let currentImg = document.getElementById(img);
   //empty the content of the holding div
   heartDraw.clearRect(0,0,300,300);
@@ -436,14 +434,14 @@ function scale(){
   if (scaleDirection === 'up') {
     position++;
     //if the array has reached the end then set the direction to downwards
-    if(position === 29){
+    if(position === lastImg){
       scaleDirection = 'down';
     }
     //if the array is not increasing go downwards
   }else{
     position--;
     //if it reaches the first element in the array set it to upwards
-    if(position === 0){
+    if(position === 1){
       scaleDirection = 'up';
     }
   }
