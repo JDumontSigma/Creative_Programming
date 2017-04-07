@@ -47,6 +47,7 @@ Chart = new Chart(chart, {
     }
   }
 });
+
 /*=================================================================
 
 UPDATE BACKGROUND CHART CODE!!!!!!!

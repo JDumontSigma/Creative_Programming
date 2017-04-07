@@ -28,7 +28,7 @@ function updateSpeed(){
       heartSpeed = 5;
     }
     //log the heart speed to test the changes
-    console.log(heartSpeed);
+    //console.log(heartSpeed);
     //calls the function again
     updateSpeed();
   },5000);
@@ -44,10 +44,11 @@ function scale(){
   let img = `heart_${position}`;
   let currentImg = document.getElementById(img);
   //empty the content of the holding div
-  heartDraw.clearRect(0,0,300,300);
+  heartDraw.clearRect(0,0,600,300);
   //set the div to the new number in the array
   heartDraw.drawImage(currentImg,0,0);
-
+  heartDraw.font = '50px cabrito';
+  heartDraw.fillText(`${heartSpeed} BPM`,280,175);
   //if the array is moving up add to the position
   if (scaleDirection === 'up') {
     position++;

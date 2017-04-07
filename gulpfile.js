@@ -25,7 +25,7 @@ gulp.task('scripts', function() { 
     return gulp.src([
         './js/seperate/*.js',
     ])
-        .pipe(concat('scriptstwo.js'))
+        .pipe(concat('scripts.js'))
         .pipe(gulp.dest('./js/'));
 });
 

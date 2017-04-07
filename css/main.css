@@ -57,6 +57,7 @@ END OF RESET CODE
 	width: 1280px;
 	height: 720px;
 	margin:0 auto;
+	overflow: hidden;
 }
 canvas{
 	max-width: 1280px;
@@ -64,7 +65,6 @@ canvas{
 	display: inline-block !important;
 }
 #chart{
-  border: solid 1px black;
   background-color: #E5E5E5;
 }
 
@@ -75,7 +75,7 @@ canvas{
 	         url('../fonts/insigne_-_cabrito-extbol-webfont.woff') format('woff'),
 	         url('../fonts/insigne_-_cabrito-extbol-webfont.ttf') format('truetype'),
 	         url('../fonts/insigne_-_cabrito-extbol-webfont.svg#cabrito_ext_boldext_bold') format('svg');
-	    font-weight: bold;
+	    font-weight: 400;
 	    font-style: normal;
 	}
 
@@ -86,50 +86,56 @@ canvas{
 	         url('../fonts/insigne_-_cabrito-nordem-webfont.woff') format('woff'),
 	         url('../fonts/insigne_-_cabrito-nordem-webfont.ttf') format('truetype'),
 	         url('../fonts/insigne_-_cabrito-nordem-webfont.svg#cabrito_norm_deminorm_demi') format('svg');
-	    font-weight: normal;
+	    font-weight: 400;
 	    font-style: normal;
+
 	}
 
 
 #scatter{
 	position: absolute;
 	right:40px;
-	bottom: 40px;
+	bottom: 60px;
 	border-left: solid 3px rgba(100,100,100,0.4);
 }
 #scatterTitle{
 	position: absolute;
-	top: 280px;
+	top: 260px;
 	right: 60px;
 
 }
 #numbOfTweets{
-	background-color: rgba(255,255,255,0.2);
+	background-color: rgba(255,255,255,0.4);
 	position: absolute;
-	top: 50px;
-	right: 340px;
+	top: 105px;
+	right: 320px;
 }
 #lastFive{
-	border: solid 1px black;
+	background-color: rgba(255,255,255,0.4);
 	position: absolute;
-	bottom: 40px;
+	bottom: 60px;
 	left: 40px;
 }
 #canvas{
 	position: absolute;
-	bottom: 0;
+	bottom: -5px;
 	left:0;
+	border-top:solid 2px rgba(100,100,100,0.85);
+	background-color: rgba(255,255,255,0.6);
 }
 #myCanvas{
 	position: absolute;
 	top: 20px;
 	left: 20px;
-
+}
+#title{
+	position: absolute;
+	top:0;	left: 0;
 }
 #heartCanvas{
 	position: absolute;
-	top: 100px;
-	left:50px;
+	top: 30px;
+	left:100px;
 }
 .images{
 	display: none;
@@ -137,4 +143,10 @@ canvas{
 .images img{
 	width: 300px;
 	height: 300px;
+}
+#followerCount{
+	background-color: rgba(255,255,255,0.4);
+	position: absolute;
+	top: 105px;
+	right: 40px;
 }

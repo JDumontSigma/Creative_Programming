@@ -12,7 +12,7 @@ function randomNumber() {
     //increase the number of tweets
     numbOfTweets = numbOfTweets + changingNumber;
     tweetCountUpdate();
-
+    followerCountUpdate();
     //sets up a looping function
 
     setTimeout(function(){

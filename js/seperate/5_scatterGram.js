@@ -10,8 +10,8 @@ function scaTitle(){
   scatterTitle.clearRect(0,0,500,300);
     scatterTitle.beginPath();
       scatterTitle.font = '30px cabrito';
-      scatterTitle.fillText('Average Infection Rate',20,50);
-      scatterTitle.fillText(`${increaseNumber} per minute`,20,100);
+      scatterTitle.fillText('Average Reach Rate',20,50);
+      scatterTitle.fillText(`${increaseNumber} people per minute`,20,100);
     scatterTitle.closePath();
   scatterTitle.stroke();
 }

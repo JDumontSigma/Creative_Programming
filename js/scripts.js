@@ -153,10 +153,8 @@ function titleDisplay(){
 
     title.beginPath();
       title.font = '50px cabrito';
-      title.fillText('The Health of ',30,50);
-      title.fillStyle = 'Red';
-      title.fillText('Camp Digital ',365,50);
-    title.closePath();
+      title.fillText('The Health of Camp Digital',30,50);
+      title.closePath();
 }
 titleDisplay();
 
@@ -449,10 +447,11 @@ function scale(){
   let img = `heart_${position}`;
   let currentImg = document.getElementById(img);
   //empty the content of the holding div
-  heartDraw.clearRect(0,0,300,300);
+  heartDraw.clearRect(0,0,600,300);
   //set the div to the new number in the array
   heartDraw.drawImage(currentImg,0,0);
-
+  heartDraw.font = '50px cabrito';
+  heartDraw.fillText(`${heartSpeed} BPM`,280,175);
   //if the array is moving up add to the position
   if (scaleDirection === 'up') {
     position++;
