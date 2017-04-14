@@ -48,7 +48,7 @@ function scale(){
   //set the div to the new number in the array
   heartDraw.drawImage(currentImg,0,0);
   heartDraw.font = '50px cabrito';
-  heartDraw.fillText(`${heartSpeed} BPM`,280,175);
+  heartDraw.fillText(`${heartSpeed} BPM`,280,165);
   //if the array is moving up add to the position
   if (scaleDirection === 'up') {
     position++;

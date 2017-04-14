@@ -16,7 +16,7 @@ var data = {
     //pass through the data which has been set
     data:allData,
     //set the background colour for the chart
-    backgroundColor: 'rgba(106, 202, 197, 0.05)',
+    backgroundColor: 'rgba(106, 202, 197, 0.15)',
     //set the line colour for the chart
     borderColor: 'rgba(106, 202, 197, 0.15)'
   }]

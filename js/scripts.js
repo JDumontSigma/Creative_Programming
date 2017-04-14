@@ -90,7 +90,7 @@ var data = {
     //pass through the data which has been set
     data:allData,
     //set the background colour for the chart
-    backgroundColor: 'rgba(106, 202, 197, 0.05)',
+    backgroundColor: 'rgba(106, 202, 197, 0.15)',
     //set the line colour for the chart
     borderColor: 'rgba(106, 202, 197, 0.15)'
   }]
@@ -153,10 +153,11 @@ function titleDisplay(){
 
     title.beginPath();
       title.font = '50px cabrito';
-      title.fillText('The Health of Camp Digital',30,50);
+      title.fillText('The Health of ',30,50);
+      title.fillStyle = 'Red';
+      title.fillText('Camp Digital',365,50);
       title.closePath();
 }
-titleDisplay();
 
 /*=================================================================
 
@@ -451,7 +452,7 @@ function scale(){
   //set the div to the new number in the array
   heartDraw.drawImage(currentImg,0,0);
   heartDraw.font = '50px cabrito';
-  heartDraw.fillText(`${heartSpeed} BPM`,280,175);
+  heartDraw.fillText(`${heartSpeed} BPM`,280,165);
   //if the array is moving up add to the position
   if (scaleDirection === 'up') {
     position++;
