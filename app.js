@@ -21,7 +21,7 @@ let twitter = new Twitter(twitterAuth);
 
 
 
-app.set('port', process.env.PORT || 3000);
+app.set('port', process.env.PORT || 5000);
 
 //set up some basic settings within express
 app.use(express.static(path.join(__dirname, 'public')));
