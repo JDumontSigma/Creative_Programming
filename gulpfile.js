@@ -15,7 +15,7 @@ gulp.task('default', [], function() {
 //lint the javascript
 gulp.task('jshint', function() {
     return gulp.src([
-        '/js/seperate/*.js',
+        '/public/js/seperate/*.js',
     ]).pipe(jshint()
     ).pipe(jshint.reporter('jshint-stylish'));
 });
@@ -23,10 +23,10 @@ gulp.task('jshint', function() {
 //compile the javascript into one
 gulp.task('scripts', function() { 
     return gulp.src([
-        './js/seperate/*.js',
+        './public/js/seperate/*.js',
     ])
         .pipe(concat('scripts.js'))
-        .pipe(gulp.dest('./js/'));
+        .pipe(gulp.dest('./public/js/'));
 });
 
 //Generates a live reloading web server
@@ -52,6 +52,6 @@ gulp.task('webserver', [ ], function() {
 
 //watch the js files for changes!
 gulp.task('watch', function() {
-  gulp.watch('./css/*.css'),[];
-  gulp.watch('./js/**/*.js', ['jshint', 'scripts']);
+  gulp.watch('./public/css/*.css'),[];
+  gulp.watch('./public/js/**/*.js', ['jshint', 'scripts']);
 });

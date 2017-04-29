@@ -4,7 +4,6 @@ DRAW NUMBER OF TWEETS!!!!!!!
 
 ==================================================================*/
 let tweetCount = document.getElementById('numbOfTweets').getContext('2d');
-
 function tweetCountUpdate(){
 tweetCount.save();
 tweetCount.clearRect(0,0,225,150);

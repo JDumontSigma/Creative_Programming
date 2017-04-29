@@ -10,15 +10,15 @@ function randomNumber() {
     //displauys the new value on screen
     document.getElementById('number').innerHTML = changingNumber;
     //increase the number of tweets
-    numbOfTweets = numbOfTweets + changingNumber;
-    tweetCountUpdate();
-    followerCountUpdate();
+    //numbOfTweets = numbOfTweets + changingNumber;
+    //tweetCountUpdate();
+    //followerCountUpdate();
     //sets up a looping function
 
     setTimeout(function(){
       //calls the same function
       randomNumber();
-      updateChart(changingNumber);
+      //updateChart(changingNumber);
       //currently set to loop every 5 seconds
       //1000 = 1 second
     },2500);

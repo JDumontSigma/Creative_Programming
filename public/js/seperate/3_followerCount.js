@@ -12,7 +12,7 @@ followerCount.clearRect(0,0,225,150);
     followerCount.font = '30px cabrito';
     followerCount.fillText('Total reach',20,60);
     followerCount.font = '50px cabrito';
-    followerCount.fillText(`${numbOfTweets}`,20,110);
+    followerCount.fillText(`${numbOfFollowers}`,20,110);
   followerCount.closePath();
 followerCount.stroke();
 }

@@ -1,9 +1,66 @@
+$(document).ready(function(){
+  tweetCountUpdate();
+  followerCountUpdate();
+  lastFive();
+  //provide an initial call to the function
+  scale();
+  updateSpeed();
+  let counter = 0;
+
+  let socket = io.connect('/');
+  socket.on('new_tweet', function(data){
+    numbOfTweets++;
+    numbOfFollowers = (data.followerCount).toLocaleString();
+    tweetNames = data.tweetNames.splice(-5);
+    heartSpeed = heartSpeed + 4;
+
+    text[counter] = {'string': data.tweetContent[counter], 'x': furthestPosition};
+    furthestPosition = furthestPosition + 1700;
+    counter++;
+    defineHeartSpeed();
+    followerCountUpdate()
+    tweetCountUpdate();
+    lastFive();
+  });
+
+  socket.on('cycle', function(data){
+    updateChart(data.count);
+    if(increaseNumber === null){
+      increaseNumber = 0;
+    }else{
+      increaseNumber = data.follow;
+    }
+    scaTitle();
+  });
+});
+
+
+
+function defineHeartSpeed(){
+  if(heartSpeed === 60){
+    heartRate = 60;
+  }else if(heartSpeed > 60 && heartSpeed < 80){
+    heartRate = 50;
+  }else if(heartSpeed > 80 && heartSpeed < 100){
+    heartRate = 40;
+  }else if(heartSpeed > 100 && heartSpeed < 120){
+    heartRate = 30;
+  }else if(heartSpeed > 120 && heartSpeed < 140){
+    heartRate = 20;
+  }else if(heartSpeed > 140 && heartSpeed < 160){
+    heartRate = 10;
+  }else if(heartRate > 160){
+    heartRate = 5;
+  }
+}
+
 'use strict';
 //This is the number that will change!
 var changingNumber = 0;
 var allData = [9,20,3,4,5];
 var labels = ['Red', 'Blue', 'Yellow', 'Green', 'Orange'];
 let numbOfTweets= 0;
+let numbOfFollowers = 0;
 
 /*=================================================================
 
@@ -11,7 +68,6 @@ DRAW NUMBER OF TWEETS!!!!!!!
 
 ==================================================================*/
 let tweetCount = document.getElementById('numbOfTweets').getContext('2d');
-
 function tweetCountUpdate(){
 tweetCount.save();
 tweetCount.clearRect(0,0,225,150);
@@ -23,7 +79,31 @@ tweetCount.clearRect(0,0,225,150);
   tweetCount.closePath();
 tweetCount.stroke();
 }
-//Generates a random number!
+
+/*=================================================================
+
+DRAW NUMBER OF TWEETS!!!!!!!
+
+==================================================================*/
+let followerCount = document.getElementById('followerCount').getContext('2d');
+
+function followerCountUpdate(){
+followerCount.save();
+followerCount.clearRect(0,0,225,150);
+  followerCount.beginPath();
+    followerCount.font = '30px cabrito';
+    followerCount.fillText('Total reach',20,60);
+    followerCount.font = '50px cabrito';
+    followerCount.fillText(`${numbOfFollowers}`,20,110);
+  followerCount.closePath();
+followerCount.stroke();
+}
+
+/*=================================================================
+
+Generate a random number!!!!!!!
+
+==================================================================*/
 function randomNumber() {
     //change the variable to a new number
     //to increase of decrease the number increase of decrease the number 10
@@ -31,20 +111,21 @@ function randomNumber() {
     //displauys the new value on screen
     document.getElementById('number').innerHTML = changingNumber;
     //increase the number of tweets
-    numbOfTweets = numbOfTweets + changingNumber;
-    tweetCountUpdate();
-
+    //numbOfTweets = numbOfTweets + changingNumber;
+    //tweetCountUpdate();
+    //followerCountUpdate();
     //sets up a looping function
 
     setTimeout(function(){
       //calls the same function
       randomNumber();
-      updateChart(changingNumber);
+      //updateChart(changingNumber);
       //currently set to loop every 5 seconds
       //1000 = 1 second
     },2500);
 }
 //call the function to start the change
+
 randomNumber();
 
 /*=================================================================
@@ -65,7 +146,7 @@ var data = {
     //pass through the data which has been set
     data:allData,
     //set the background colour for the chart
-    backgroundColor: 'rgba(106, 202, 197, 0.05)',
+    backgroundColor: 'rgba(106, 202, 197, 0.15)',
     //set the line colour for the chart
     borderColor: 'rgba(106, 202, 197, 0.15)'
   }]
@@ -96,6 +177,7 @@ Chart = new Chart(chart, {
     }
   }
 });
+
 /*=================================================================
 
 UPDATE BACKGROUND CHART CODE!!!!!!!
@@ -116,9 +198,22 @@ function updateChart(newNumber){
   Chart.update();
 }
 
+//=======================================================================
 
+//title
 
+//========================================================================
+var canvas = document.getElementById("myCanvas");
+var title = canvas.getContext("2d");
+function titleDisplay(){
 
+    title.beginPath();
+      title.font = '50px cabrito';
+      title.fillText('The Health of ',30,50);
+      title.fillStyle = 'Red';
+      title.fillText('Camp Digital',365,50);
+      title.closePath();
+}
 
 /*=================================================================
 
@@ -128,16 +223,16 @@ SCATTERGRAM TITLE!!!!!!!
 let scatterTitle = document.getElementById('scatterTitle').getContext('2d');
 
 function scaTitle(){
+  if(increaseNumber === null){increaseNumber = 0;}
   scatterTitle.save();
   scatterTitle.clearRect(0,0,500,300);
     scatterTitle.beginPath();
       scatterTitle.font = '30px cabrito';
-      scatterTitle.fillText('Average Infection Rate',20,50);
-      scatterTitle.fillText(`${increaseNumber} per minute`,20,100);
+      scatterTitle.fillText('Average Reach Rate',20,50);
+      scatterTitle.fillText(`${increaseNumber} people per minute`,20,100);
     scatterTitle.closePath();
   scatterTitle.stroke();
 }
-
 
 
 /*=================================================================
@@ -176,7 +271,7 @@ let scatterGram = {},
     progress = 251,
     speed= 1,
     ballNumb = 0,
-    increaseNumber = changingNumber * 30,
+    increaseNumber = 0,
     colour = ['#333','rgba(215, 40, 40, 0.2)','rgba(215, 143, 44, 0.2)','rgba(90, 143, 44, 0.2)','rgba(90, 62, 149, 0.2)',' rgba(203, 62, 149, 0.2)','rgba(78, 255, 179, 0.2)'];
 
 
@@ -188,7 +283,7 @@ function drawScatterGram(){
   //checks to see if elements have already been drawn
 
     //if the balls have not fully entered the screen then do this
-    if(progress < 250){
+    if(progress < 400){
       //loop through the json object
       for(let balls in scatterGram){
         //pull in the data about the ball
@@ -215,8 +310,7 @@ function drawScatterGram(){
       //reset the progress
       progress = 0;
       //grab a new version of the number
-      increaseNumber = changingNumber * 30;
-      scaTitle();
+
       //loop through all the current objects in the object first
       for(let balls in scatterGram){
         //gather all the details
@@ -231,10 +325,14 @@ function drawScatterGram(){
             //save the nex x positon
             scatterGram[balls].x = newX;
       }
+      increaseNumber = increaseNumber / 10;
+      if(increaseNumber > 750){
+        increaseNumber = 750;
+      }
       //draw the next wave of balls
       for(let x = 0; x < increaseNumber; x++){
         //generate random numbers and place them off canvas
-        let x = random(1,250) * -1;
+        let x = random(1,400) * -1;
         let y = random(15,250),
             colourChoice = random(1,7),
             size = random(2,6);
@@ -263,34 +361,15 @@ drawScatterGram();
 LAST 5!!!!!!!
 
 ==================================================================*/
-//USED FOR DEMO PURPOSES
-function shuffle(array) {
-  var currentIndex = array.length, temporaryValue, randomIndex;
-
-  // While there remain elements to shuffle...
-  while (0 !== currentIndex) {
-
-    // Pick a remaining element...
-    randomIndex = Math.floor(Math.random() * currentIndex);
-    currentIndex -= 1;
-
-    // And swap it with the current element.
-    temporaryValue = array[currentIndex];
-    array[currentIndex] = array[randomIndex];
-    array[randomIndex] = temporaryValue;
-  }
-
-  return array;
-}
-
-
-let tweetNames = ['@name_tne','@name_two','@name_three','@name_four','@name_five'];
+//define variable
+let tweetNames = ['','','','',''];
+//get canvas content
 let five = document.getElementById('lastFive').getContext('2d');
 
+//define function
 function lastFive(){
+  //layout position variable
   let spacing = 100;
-  //shuffle used for demo purposes only
-  shuffle(tweetNames);
   //save canvas context
   five.save();
   //clear the previous content
@@ -299,21 +378,132 @@ function lastFive(){
     //set up font variables
       five.font = '30px cabrito';
       //provide a title
-      five.fillText('Last five infected',20,50);
+      five.fillText('Lastest Five',20,50);
       //loop through the 5 array elements to display them
       for(let i = 0; i < 5; i++){
+        five.font = '25px cabrito';
         //write out the text and increase the y position
-        five.fillText(tweetNames[i],40,spacing);
-        spacing = spacing + 50;
+        //check to see whether the varaibels are empty or not
+        if(typeof tweetNames[i] === 'undefined' || tweetNames[i] === null){
+            five.fillText('Awaiting Tweet...' ,20,spacing);
+        }else{
+            five.fillText('@' + tweetNames[i],20,spacing);
+        }
+
+        spacing = spacing + 60;
       }
     five.closePath();
   five.stroke();
-
-  //loop the function every 1 seconds
-  //this will be replaced by a event emitter
-  setTimeout(function(){
-    lastFive();
-  },1000);
 }
-//start the function off
-lastFive();
+
+var text ={};
+
+var furthestPosition = 0;
+var length = 1700;
+var numbOfTweet = 0;
+
+var ctx = document.getElementById('canvas').getContext('2d');
+
+var newsSpeed = 1;//sets the speed in which the text will move.
+
+ctx.beginPath();
+ctx.font="20px cabrito";
+ctx.fillStyle="Red";
+
+//this sets the font style.
+
+function draw(){
+  ctx.save();
+  ctx.clearRect(0,0,1280,50);
+//clears the draw function and starts it again so it goes in a loop
+  if(_.isEmpty(text)){
+    ctx.fillText("Awaiting Tweets.....", 20, 30);
+  }else{
+    for(var message in text){
+      var x = text[message].x - newsSpeed;
+     ctx.fillText( text[message].string,x,30);
+     text[message].x = x;
+      if(x < -1700){
+        x = furthestPosition;
+        furthestPosition = furthestPosition + 1700;
+        text[message].x = x;
+      }
+
+   }
+   furthestPosition = furthestPosition - newsSpeed;
+  }
+
+  ctx.stroke();
+  setTimeout(function(){
+    draw();
+  },10);
+  //this sets the timer before clearning the cvans to start again and then tells
+  //the canvas to draw again
+}
+
+draw();
+
+//get the holding element to demonstrate the array
+let heartDraw = document.getElementById('heartCanvas').getContext('2d');
+//This is -1 from the max number of images
+let lastImg = 30;
+//set a starting postiion at the beginning
+let position = 1;
+//provide a direction for the array to move
+let scaleDirection = 'up';
+
+
+//Dynamically changing the speed of the heart based on number inputs
+//set a base rate for the heart
+let heartSpeed= 60;
+let heartRate = 60;
+
+//a function is set here to manage the speed
+function updateSpeed(){
+  if(heartSpeed > 60){
+    heartSpeed = heartSpeed - 4;
+  }
+  //this will update the speed every 5 seconds
+  setTimeout(function(){
+    updateSpeed();
+  },10000);
+}
+
+
+
+
+
+
+//initiate a function which will display and eventually change the image
+function scale(){
+  let img = `heart_${position}`;
+  let currentImg = document.getElementById(img);
+  //empty the content of the holding div
+  heartDraw.clearRect(0,0,600,300);
+  //set the div to the new number in the array
+  heartDraw.drawImage(currentImg,0,0);
+  heartDraw.font = '50px cabrito';
+  heartDraw.fillText(`${heartSpeed} BPM`,280,165);
+  //if the array is moving up add to the position
+  if (scaleDirection === 'up') {
+    position++;
+    //if the array has reached the end then set the direction to downwards
+    if(position === lastImg){
+      scaleDirection = 'down';
+    }
+    //if the array is not increasing go downwards
+  }else{
+    position--;
+    //if it reaches the first element in the array set it to upwards
+    if(position === 1){
+      scaleDirection = 'up';
+    }
+  }
+
+  //loop over the function repeatedly
+  setTimeout(function(){
+    scale();
+    //updates depending on the heart speed set by function above
+  },heartRate);
+
+}

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>TE2006 &verbar; Group Assignment &verbar; Camp Digital Dashboard</title>
+  <link rel="stylesheet" href="../css/main.css">
+</head>
+<body onLoad="titleDisplay()">
+  <!-- Shows the random number changing -->
+  <div id="number"></div>
+  <!-- The background canvas -->
+  <section class="container">
+    <canvas id="chart" width="1280" height="720"></canvas>
+    <canvas id="scatterTitle" width="500" height="300"></canvas>
+    <canvas id="scatter" width="500" height="275"></canvas>
+    <canvas id="numbOfTweets" width="225" height="150"></canvas>
+    <canvas id="followerCount" width="260" height="150"></canvas>
+    <canvas id="lastFive" width="300" height="372"></canvas>
+    <canvas id="heartCanvas" width="600" height="300"></canvas>
+    <canvas width="1280" height="50" id="canvas"></canvas>
+    <canvas id="myCanvas" width="1000" height="100"></canvas>
+  </section>
+
+  <section id="data">
+
+  </section>
+  <section class="images">
+    <img src="../img/heart_1.png" id="heart_1">
+    <img src="../img/heart_2.png" id="heart_2">
+    <img src="../img/heart_3.png" id="heart_3">
+    <img src="../img/heart_4.png" id="heart_4">
+    <img src="../img/heart_5.png" id="heart_5">
+    <img src="../img/heart_6.png" id="heart_6">
+    <img src="../img/heart_7.png" id="heart_7">
+    <img src="../img/heart_8.png" id="heart_8">
+    <img src="../img/heart_9.png" id="heart_9">
+    <img src="../img/heart_10.png" id="heart_10">
+    <img src="../img/heart_11.png" id="heart_11">
+    <img src="../img/heart_12.png" id="heart_12">
+    <img src="../img/heart_13.png" id="heart_13">
+    <img src="../img/heart_14.png" id="heart_14">
+    <img src="../img/heart_15.png" id="heart_15">
+    <img src="../img/heart_16.png" id="heart_16">
+    <img src="../img/heart_17.png" id="heart_17">
+    <img src="../img/heart_18.png" id="heart_18">
+    <img src="../img/heart_19.png" id="heart_19">
+    <img src="../img/heart_20.png" id="heart_20">
+    <img src="../img/heart_21.png" id="heart_21">
+    <img src="../img/heart_22.png" id="heart_22">
+    <img src="../img/heart_23.png" id="heart_23">
+    <img src="../img/heart_24.png" id="heart_24">
+    <img src="../img/heart_25.png" id="heart_25">
+    <img src="../img/heart_26.png" id="heart_26">
+    <img src="../img/heart_27.png" id="heart_27">
+    <img src="../img/heart_28.png" id="heart_28">
+    <img src="../img/heart_29.png" id="heart_29">
+    <img src="../img/heart_30.png" id="heart_30">
+  </section>
+
+  <!-- Linking in Chart.js -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+  <!-- Linking in Socket.io -->
+  <script src="/socket.io/socket.io.js" type="text/javascript"></script>
+  <!-- Linking in JQuery -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <!-- linking in lodash -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.4/lodash.min.js"></script>
+  <!-- Linking in the script -->
+  <script src="../js/scripts.js"></script>
+
+  <!-- <script type="text/javascript">
+    $(document).ready(function(){
+      let socket = io.connect('/');
+
+      socket.on('new_tweet', function(data){
+        console.log(data);
+        $('#data').html('');
+        $('#data').append(`Number of tweets: ${data.tweetCount}\n
+                           Number of followers: ${data.followerCount}\n
+                           tweet content: ${data.tweetContent}
+                          Last 5 tweet names: ${data.tweetNames.splice(-5)}`);
+      });
+    });
+
+  </script> -->
+</body>
+</html>

@@ -11,27 +11,17 @@ let scaleDirection = 'up';
 //Dynamically changing the speed of the heart based on number inputs
 //set a base rate for the heart
 let heartSpeed= 60;
+let heartRate = 60;
 
 //a function is set here to manage the speed
 function updateSpeed(){
+  if(heartSpeed > 60){
+    heartSpeed = heartSpeed - 4;
+  }
   //this will update the speed every 5 seconds
   setTimeout(function(){
-    //parameters which fit in with the current number
-    //this will change and potentially increase when twitter is integrated
-    if(changingNumber < 3){
-      heartSpeed = 60;
-    }
-    if(changingNumber < 7 && changingNumber > 3){
-      heartSpeed = 30;
-    }
-    if(changingNumber > 7){
-      heartSpeed = 5;
-    }
-    //log the heart speed to test the changes
-    //console.log(heartSpeed);
-    //calls the function again
     updateSpeed();
-  },5000);
+  },10000);
 }
 
 
@@ -69,10 +59,6 @@ function scale(){
   setTimeout(function(){
     scale();
     //updates depending on the heart speed set by function above
-  },heartSpeed);
+  },heartRate);
 
 }
-
-//provide an initial call to the function
-scale();
-updateSpeed();

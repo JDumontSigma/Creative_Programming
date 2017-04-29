@@ -6,6 +6,7 @@ SCATTERGRAM TITLE!!!!!!!
 let scatterTitle = document.getElementById('scatterTitle').getContext('2d');
 
 function scaTitle(){
+  if(increaseNumber === null){increaseNumber = 0;}
   scatterTitle.save();
   scatterTitle.clearRect(0,0,500,300);
     scatterTitle.beginPath();
@@ -53,7 +54,7 @@ let scatterGram = {},
     progress = 251,
     speed= 1,
     ballNumb = 0,
-    increaseNumber = changingNumber * 30,
+    increaseNumber = 0,
     colour = ['#333','rgba(215, 40, 40, 0.2)','rgba(215, 143, 44, 0.2)','rgba(90, 143, 44, 0.2)','rgba(90, 62, 149, 0.2)',' rgba(203, 62, 149, 0.2)','rgba(78, 255, 179, 0.2)'];
 
 
@@ -65,7 +66,7 @@ function drawScatterGram(){
   //checks to see if elements have already been drawn
 
     //if the balls have not fully entered the screen then do this
-    if(progress < 250){
+    if(progress < 400){
       //loop through the json object
       for(let balls in scatterGram){
         //pull in the data about the ball
@@ -92,8 +93,7 @@ function drawScatterGram(){
       //reset the progress
       progress = 0;
       //grab a new version of the number
-      increaseNumber = changingNumber * 30;
-      scaTitle();
+
       //loop through all the current objects in the object first
       for(let balls in scatterGram){
         //gather all the details
@@ -108,10 +108,14 @@ function drawScatterGram(){
             //save the nex x positon
             scatterGram[balls].x = newX;
       }
+      increaseNumber = increaseNumber / 10;
+      if(increaseNumber > 750){
+        increaseNumber = 750;
+      }
       //draw the next wave of balls
       for(let x = 0; x < increaseNumber; x++){
         //generate random numbers and place them off canvas
-        let x = random(1,250) * -1;
+        let x = random(1,400) * -1;
         let y = random(15,250),
             colourChoice = random(1,7),
             size = random(2,6);
