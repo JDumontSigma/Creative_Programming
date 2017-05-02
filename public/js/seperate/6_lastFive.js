@@ -31,7 +31,7 @@ function lastFive(){
         }else{
             five.fillText('@' + tweetNames[i],20,spacing);
         }
-
+        //shit the way down to make layout appropriate
         spacing = spacing + 60;
       }
     five.closePath();

@@ -1,14 +1,18 @@
+//document is now completely loaded
 $(document).ready(function(){
+    //provide an initial call to the functions
   tweetCountUpdate();
   followerCountUpdate();
   lastFive();
-  //provide an initial call to the function
   scale();
   updateSpeed();
   let counter = 0;
 
+//sets up a socket conntection to the server
   let socket = io.connect('/');
+  //wait for the new tweet event
   socket.on('new_tweet', function(data){
+    //manupulate data appropriately
     numbOfTweets++;
     numbOfFollowers = (data.followerCount).toLocaleString();
     tweetNames = data.tweetNames.splice(-5);
@@ -17,13 +21,15 @@ $(document).ready(function(){
     text[counter] = {'string': data.tweetContent[counter], 'x': furthestPosition};
     furthestPosition = furthestPosition + 1700;
     counter++;
+    //do appropriate updates
     defineHeartSpeed();
     followerCountUpdate()
     tweetCountUpdate();
     lastFive();
   });
-
+  //wait for the cycle event
   socket.on('cycle', function(data){
+    //manipulate the received data
     updateChart(data.count);
     if(increaseNumber === null){
       increaseNumber = 0;
@@ -35,7 +41,7 @@ $(document).ready(function(){
 });
 
 
-
+//does common check to increase and decrease the heart rate on screen
 function defineHeartSpeed(){
   if(heartSpeed === 60){
     heartRate = 60;

@@ -1,5 +1,5 @@
 'use strict';
-
+//bring in required modules to run the node app
 const express = require('express'),
       app = express(),
       ejs = require('ejs'),
@@ -12,7 +12,7 @@ const express = require('express'),
       SocketIO = require('socket.io');
 
 
-
+//set up the server to be running
 const server = http.createServer(app),
       io = SocketIO.listen(server);
 
@@ -20,7 +20,7 @@ const server = http.createServer(app),
 let twitter = new Twitter(twitterAuth);
 
 
-
+//two choices for the port number
 app.set('port', process.env.PORT || 3000);
 
 //set up some basic settings within express
@@ -60,22 +60,30 @@ function formatData(data) {
     };
 }
 
+//loops through an emits an even every 5 seconds
 function cycleStream(){
+  //push the numbres to the array
   cycleCount_Array.push(cycleCount);
   cycleFollow_Array.push(cycleFollow);
   cycleFollow = cycleFollow / cycleCount;
+  //check to see that there has been an increase if not then send 0
   if(typeof cycleFollow === 'undefined' || cycleFollow === null){
     cycleFollow = 0;
   }
+  //emit this even
   io.sockets.emit('cycle',{count: cycleCount, follow: cycleFollow});
+  //reset the numbers back to 0
   cycleCount = cycleFollow = 0;
+  //loop the data
   setTimeout(function(){
     cycleStream();
   },5000);
 }
+//deal with streaming twitter information
 function getTwitterStream(keyword) {
     twitter.stream('statuses/filter', {track: keyword}, function (stream) {
         stream.on('data', function (data) {
+          //increasing and manipuilating data received from the json object
           numbOfTweets++;
           numbOfFollowers = numbOfFollowers + data.user.followers_count;
           cycleCount++;
@@ -83,8 +91,10 @@ function getTwitterStream(keyword) {
           tweetNames.push(data.user.screen_name);
           tweetContent.push(data.text);
           averageCount = numbOfFollowers/numbOfTweets;
+          //emit the new tweet even
           io.sockets.emit('new_tweet', {tweetCount: numbOfTweets, followerCount:numbOfFollowers, tweetNames:tweetNames,tweetContent:tweetContent,averageCount:averageCount});
         });
+        //if anything goes wrong error the application
         stream.on('error', function (err) {
             console.log('ERROR');
             console.log(err);
@@ -94,6 +104,7 @@ function getTwitterStream(keyword) {
 
 //Call as many streams as you want with different words
 getTwitterStream('UX');
+//initialises the first cycle
 cycleStream();
 
 //set the server up and running

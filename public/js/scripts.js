@@ -1,14 +1,18 @@
+//document is now completely loaded
 $(document).ready(function(){
+    //provide an initial call to the functions
   tweetCountUpdate();
   followerCountUpdate();
   lastFive();
-  //provide an initial call to the function
   scale();
   updateSpeed();
   let counter = 0;
 
+//sets up a socket conntection to the server
   let socket = io.connect('/');
+  //wait for the new tweet event
   socket.on('new_tweet', function(data){
+    //manupulate data appropriately
     numbOfTweets++;
     numbOfFollowers = (data.followerCount).toLocaleString();
     tweetNames = data.tweetNames.splice(-5);
@@ -17,13 +21,15 @@ $(document).ready(function(){
     text[counter] = {'string': data.tweetContent[counter], 'x': furthestPosition};
     furthestPosition = furthestPosition + 1700;
     counter++;
+    //do appropriate updates
     defineHeartSpeed();
     followerCountUpdate()
     tweetCountUpdate();
     lastFive();
   });
-
+  //wait for the cycle event
   socket.on('cycle', function(data){
+    //manipulate the received data
     updateChart(data.count);
     if(increaseNumber === null){
       increaseNumber = 0;
@@ -35,7 +41,7 @@ $(document).ready(function(){
 });
 
 
-
+//does common check to increase and decrease the heart rate on screen
 function defineHeartSpeed(){
   if(heartSpeed === 60){
     heartRate = 60;
@@ -67,16 +73,26 @@ let numbOfFollowers = 0;
 DRAW NUMBER OF TWEETS!!!!!!!
 
 ==================================================================*/
+//get the tweet count canvas
 let tweetCount = document.getElementById('numbOfTweets').getContext('2d');
+//set up a function to loop
 function tweetCountUpdate(){
 tweetCount.save();
+//clear the rectangle path
 tweetCount.clearRect(0,0,225,150);
+//start a new text draw
   tweetCount.beginPath();
+  //set the font
     tweetCount.font = '30px cabrito';
+    //draw the title
     tweetCount.fillText('Total tweets',20,60);
+    //change font setting mid way through
     tweetCount.font = '50px cabrito';
+    //draw the number of tweets out to screen, using es6 JS
     tweetCount.fillText(`${numbOfTweets}`,20,110);
+    //close the path
   tweetCount.closePath();
+  //draw it
 tweetCount.stroke();
 }
 
@@ -85,17 +101,26 @@ tweetCount.stroke();
 DRAW NUMBER OF TWEETS!!!!!!!
 
 ==================================================================*/
+//get the follower count canvas
 let followerCount = document.getElementById('followerCount').getContext('2d');
-
+//set up a function
 function followerCountUpdate(){
 followerCount.save();
+//clear the path
 followerCount.clearRect(0,0,225,150);
+  //begin a new path
   followerCount.beginPath();
+    //set font variables
     followerCount.font = '30px cabrito';
+    //draw the title
     followerCount.fillText('Total reach',20,60);
+    //change the font varibales mid way
     followerCount.font = '50px cabrito';
+    //draw out the follower count using es6 syntax
     followerCount.fillText(`${numbOfFollowers}`,20,110);
+    //close the path
   followerCount.closePath();
+  //draw it to the screen
 followerCount.stroke();
 }
 
@@ -220,17 +245,27 @@ function titleDisplay(){
 SCATTERGRAM TITLE!!!!!!!
 
 ==================================================================*/
+//get the title canvas for the scattergraph
 let scatterTitle = document.getElementById('scatterTitle').getContext('2d');
 
+//set a function
 function scaTitle(){
+  //second check to see if variable id empty
   if(increaseNumber === null){increaseNumber = 0;}
+
   scatterTitle.save();
+  //clear the rectngle of previous data
   scatterTitle.clearRect(0,0,500,300);
+    //new title
     scatterTitle.beginPath();
+    //set the font settings
       scatterTitle.font = '30px cabrito';
+      //write out static text
       scatterTitle.fillText('Average Reach Rate',20,50);
+      //fill in dynamic data using es6 syntax
       scatterTitle.fillText(`${increaseNumber} people per minute`,20,100);
     scatterTitle.closePath();
+    //draw out to the screen
   scatterTitle.stroke();
 }
 
@@ -389,7 +424,7 @@ function lastFive(){
         }else{
             five.fillText('@' + tweetNames[i],20,spacing);
         }
-
+        //shit the way down to make layout appropriate
         spacing = spacing + 60;
       }
     five.closePath();

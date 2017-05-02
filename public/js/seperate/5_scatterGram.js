@@ -3,17 +3,27 @@
 SCATTERGRAM TITLE!!!!!!!
 
 ==================================================================*/
+//get the title canvas for the scattergraph
 let scatterTitle = document.getElementById('scatterTitle').getContext('2d');
 
+//set a function
 function scaTitle(){
+  //second check to see if variable id empty
   if(increaseNumber === null){increaseNumber = 0;}
+
   scatterTitle.save();
+  //clear the rectngle of previous data
   scatterTitle.clearRect(0,0,500,300);
+    //new title
     scatterTitle.beginPath();
+    //set the font settings
       scatterTitle.font = '30px cabrito';
+      //write out static text
       scatterTitle.fillText('Average Reach Rate',20,50);
+      //fill in dynamic data using es6 syntax
       scatterTitle.fillText(`${increaseNumber} people per minute`,20,100);
     scatterTitle.closePath();
+    //draw out to the screen
   scatterTitle.stroke();
 }
 
